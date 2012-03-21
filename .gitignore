@@ -5,3 +5,12 @@ TAGS
 db/schema.rb
 log/
 db/*.sqlite3
+
+# Ignore Vim's swp files
+*.swp
+
+# Ignore tmp folder
+tmp/
+
+# Ignore .DS_Store files
+.DS_Store
