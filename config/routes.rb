@@ -14,8 +14,8 @@ Rottenpotatoes::Application.routes.draw do
   #   resources :products
   resources :movies
 
-  match '/find_more_from_director', to: 'movies#find_more_from_director',
-                                    as: 'find_more_from_director'
+  match '/similar_movies_to', to: 'movies#similar_movies_to',
+                              as: 'similar_movies_to'
   # Sample resource route with options:
   #   resources :products do
   #     member do

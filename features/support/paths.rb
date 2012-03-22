@@ -23,6 +23,10 @@ module NavigationHelpers
     when /^the details page for "([^"]*)"$/
       movie_id = Movie.find_by_title($1).id
       "/movies/#{movie_id}/"
+
+    when /^the Similar Movies page for "([^"]*)"$/
+      "/similar_movies_to"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

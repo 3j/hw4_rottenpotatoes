@@ -7,15 +7,15 @@ describe MoviesController do
       Movie.should_receive(:find_with_current_director).with('George Lucas')
 
       # ACT
-      post :find_more_from_director, {search_terms: 'George Lucas'}
+      post :similar_movies_to, {search_terms: 'George Lucas'}
     end
 
     it 'should select the Find More From Director template' do
       # ACT
-      post :find_more_from_director
+      post :similar_movies_to
 
       # ASSERT
-      response.should render_template(:find_more_from_director)
+      response.should render_template(:similar_movies_to)
     end
 
     it 'should make the results from model available to the template' do
@@ -24,7 +24,7 @@ describe MoviesController do
       Movie.stub(:find_with_current_director).and_return(fake_results)
 
       # ACT
-      post :find_more_from_director
+      post :similar_movies_to
 
       # ASSERT
       assigns(:movies).should == fake_results

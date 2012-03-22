@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
 
-  def find_more_from_director
+  def similar_movies_to
     @movies = Movie.find_with_current_director(params[:search_terms])
   end
 
