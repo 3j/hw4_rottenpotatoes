@@ -4,5 +4,6 @@ class Movie < ActiveRecord::Base
   end
 
   def self.find_with_current_director(name)
+    Movie.where(director: name)
   end
 end
