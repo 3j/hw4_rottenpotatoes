@@ -21,7 +21,7 @@
       <img src="./assets/0.4.5/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-03-22T18:57:03+01:00">2012-03-22T18:57:03+01:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-03-22T20:41:10+01:00">2012-03-22T20:41:10+01:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -422,7 +422,7 @@
         <pre>4</pre>
       </td>
       <td>
-        <pre>    @movies = Movie.find_with_current_director(params[:search_terms])</pre>
+        <pre>    @movies = Movie.find_similar_movies(params[:search_terms])</pre>
       </td>
       <td class="hits">
         4
@@ -1460,7 +1460,7 @@
         <pre>6</pre>
       </td>
       <td>
-        <pre>  def self.find_with_current_director(name)</pre>
+        <pre>  def self.find_similar_movies(name)</pre>
       </td>
       <td class="hits">
         2

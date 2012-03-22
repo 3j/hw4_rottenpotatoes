@@ -4,13 +4,13 @@ describe MoviesController do
   describe 'when finding movies with same director' do
     it 'should call the model method that performs actual search with director' do
       # ASSERT
-      Movie.should_receive(:find_with_current_director).with('George Lucas')
+      Movie.should_receive(:find_similar_movies).with('George Lucas')
 
       # ACT
       post :similar_movies_to, {search_terms: 'George Lucas'}
     end
 
-    it 'should select the Find More From Director template' do
+    it 'should select the Similar Movies template' do
       # ACT
       post :similar_movies_to
 
@@ -21,7 +21,7 @@ describe MoviesController do
     it 'should make the results from model available to the template' do
       # ARRANGE
       fake_results = [mock(Movie), mock(Movie)]
-      Movie.stub(:find_with_current_director).and_return(fake_results)
+      Movie.stub(:find_similar_movies).and_return(fake_results)
 
       # ACT
       post :similar_movies_to
