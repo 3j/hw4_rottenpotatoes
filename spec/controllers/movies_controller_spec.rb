@@ -7,7 +7,7 @@ describe MoviesController do
       Movie.should_receive(:find_similar_movies).with('George Lucas')
 
       # ACT
-      post :similar_movies_to, {search_terms: 'George Lucas'}
+      post :similar_movies_to, {director: 'George Lucas'}
     end
 
     it 'should select the Similar Movies template' do

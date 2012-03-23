@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def similar_movies_to
-    @movies = Movie.find_similar_movies(params[:search_terms])
+    @movies = Movie.find_similar_movies(params[:director])
   end
 
   def show

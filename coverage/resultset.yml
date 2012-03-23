@@ -91,7 +91,7 @@ Cucumber Features:
     - 1
     - 
     - 
-  :created_at: 2012-03-22 20:41:10.467871 +01:00
+  :created_at: 2012-03-23 11:14:12.854199 +01:00
 RSpec: 
   :original_result: 
     /Users/dgc/screencasts/saas-course/assignments/hw4/hw4-rottenpotatoes/app/controllers/application_controller.rb: 
@@ -276,4 +276,4 @@ RSpec:
     - 2
     - 
     - 
-  :created_at: 2012-03-22 20:40:55.301214 +01:00
+  :created_at: 2012-03-23 11:14:21.173859 +01:00
