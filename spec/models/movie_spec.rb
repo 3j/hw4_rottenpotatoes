@@ -43,9 +43,6 @@ describe Movie do
       given_id = '3'
       Movie.stub(:find_director).and_return('George Lucas')
 
-      # ACT
-      #Movie.find_similar_movies(given_id)
-
       # ASSERT
       Movie.should_receive(:where).with(director: 'George Lucas')
 

@@ -2,6 +2,19 @@ require 'spec_helper'
 
 describe MoviesController do
   describe 'when finding similar movies with same director' do
+    it 'should check if movie has a director' do
+      # ARRANGE 
+      mock_movie = mock(Movie)
+      mock_movie.stub(:title).and_return('blah')
+      Movie.stub(:find).and_return(mock_movie)
+
+      # ASSERT
+      Movie.should_receive(:has_no_director?).and_return(true)
+
+      # ACT 
+      post :similar_movies, {id: '1'}
+    end
+
     context 'and there is a director' do
       it 'should call the model method that performs actual search with movie id' do
         # ARRANGE
@@ -42,32 +55,12 @@ describe MoviesController do
     end
 
     context 'and there is no director' do
-      it 'should check if movie has a director' do
-        # ARRANGE
-        Movie.stub(:find_director).and_return(nil)
-
-        # ASSERT
-        Movie.should_receive(:has_no_director?).and_return(true)
-
-        # ACT
-        post :similar_movies, {id: '1'}
-      end
-
-      it 'should redirect to the movies home page with nil director' do
+      it 'should redirect to the movies home page with no director' do
         # ARRANGE
         Movie.stub(:has_no_director?).and_return(true)
-        Movie.stub(:find_director).and_return(nil)
-
-        # ACT
-        post :similar_movies, {id: '1'}
-
-        # ASSERT
-        response.should redirect_to(movies_path)
-      end
-
-      it 'should redirect to the movies home page with empty director' do
-        # ARRANGE
-        Movie.stub(:find_director).and_return('')
+        mock_movie = mock(Movie)
+        mock_movie.stub(:title).and_return('blah')
+        Movie.stub(:find).and_return(mock_movie)
 
         # ACT
         post :similar_movies, {id: '1'}
@@ -78,9 +71,10 @@ describe MoviesController do
 
       it 'should warn us that the current movie has no director' do
         # ARRANGE
+        Movie.stub(:has_no_director?).and_return(true)
         alien = mock(Movie)
         alien.stub(:title).and_return('Alien')
-        Movie.stub(:find_director).and_return('')
+        Movie.stub(:find).and_return(alien)
 
         # ACT
         post :similar_movies, {id: '1'}
