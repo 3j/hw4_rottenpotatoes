@@ -55,7 +55,7 @@ describe MoviesController do
     end
 
     context 'and there is no director' do
-      it 'should redirect to the movies home page with no director' do
+      it 'should redirect to the movies home page' do
         # ARRANGE
         Movie.stub(:has_no_director?).and_return(true)
         mock_movie = mock(Movie)
@@ -69,7 +69,7 @@ describe MoviesController do
         response.should redirect_to(movies_path)
       end
 
-      it 'should warn us that the current movie has no director' do
+      it 'should warn us that the current movie' do
         # ARRANGE
         Movie.stub(:has_no_director?).and_return(true)
         alien = mock(Movie)
@@ -81,6 +81,46 @@ describe MoviesController do
 
         # ASSERT
         flash[:notice].should == "'#{alien.title}' has no director info"
+      end
+    end
+
+    describe 'when creating a movie' do
+      it 'should save the movie' do
+        # ARRANGE
+        mock_movie = mock(Movie)
+        mock_movie.stub(:title).and_return('blah')
+
+        # ASSERT
+        Movie.should_receive(:create!).and_return(mock_movie)
+
+        # ACT
+        post :create
+      end
+
+      it 'should inform us that the movie was successfully created' do
+        # ARRANGE
+        metropolis = mock(Movie)
+        metropolis.stub(:title).and_return('Metropolis')
+        Movie.stub(:create!).and_return(metropolis)
+
+        # ACT
+        post :create
+
+        # ASSERT
+        flash[:notice].should == "#{metropolis.title} was successfully created."
+      end
+
+      it 'should redirect to the movies home page' do
+        # ARRANGE
+        mock_movie = mock(Movie)
+        mock_movie.stub(:title).and_return('blah')
+        Movie.stub(:create!).and_return(mock_movie)
+
+        # ACT
+        post :create
+
+        # ASSERT
+        response.should redirect_to(movies_path)
       end
     end
   end
