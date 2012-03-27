@@ -16,6 +16,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/movies'
 
+    when /^the RottenPotatoes home page$/
+      '/movies'
+
     when /^the edit page for "([^"]*)"$/
       movie_id = Movie.find_by_title($1).id
       "/movies/#{movie_id}/edit"
